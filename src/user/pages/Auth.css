@@ -1,9 +1,10 @@
-.authentication__header {
-  color: white;
-  text-align: center;
+.authentication h2 {
+  color: black;
+  background-color: aquamarine;
 }
 
 .authentication {
+  background-color: aquamarine;
   width: 90%;
   max-width: 25rem;
   margin: 7rem auto;
@@ -11,5 +12,9 @@
 }
 
 .authentication form {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.authentication button {
+  margin-top: 2rem;
 }
