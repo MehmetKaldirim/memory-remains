@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -13,33 +13,9 @@ import UserPlaces from "./places/pages/UserPlaces";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import Auth from "./user/pages/Auth";
 import { AuthContext } from "./shared/context/auth-context";
-
+import { useAuth } from "./shared/hooks/auth-hook";
 const App = () => {
-  const [token, setToken] = useState(false);
-  const [userId, setUserId] = useState(false);
-
-  const login = useCallback((uid, token) => {
-    setToken(token);
-    setUserId(uid);
-    localStorage.setItem(
-      "userData",
-      JSON.stringify({ userId: uid, token: token })
-    );
-  }, []);
-
-  const logout = useCallback(() => {
-    setToken(null);
-    setUserId(null);
-    localStorage.removeItem("userData");
-  }, []);
-
-  useEffect(() => {
-    const storeData = JSON.parse(localStorage.getItem("userData"));
-    if (storeData && storeData.token) {
-      login(storeData.userId, storeData.token);
-    }
-  }, [login]);
-
+  const { token, login, logout, userId } = useAuth();
   let routes;
   if (token) {
     routes = (
