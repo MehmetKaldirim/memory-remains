@@ -31,7 +31,11 @@ const PlaceItem = (props) => {
     try {
       await sendRequest(
         `http://localhost:5001/api/places/${props.id}`,
-        "DELETE"
+        "DELETE",
+        null,
+        {
+          Authorization: "Bearer " + auth.token,
+        }
       );
       props.onDelete(props.id);
     } catch (err) {}
@@ -70,7 +74,7 @@ const PlaceItem = (props) => {
       >
         <p>
           Do you want to proceed and delete this place? Please note that it
-          can`t be undone tehreafter
+          can`t be undone thwreafter
         </p>
       </Modal>
 
